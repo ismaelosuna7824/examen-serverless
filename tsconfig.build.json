@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "target": "ES2015",
+    "outDir": ".build",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "lib": ["es2015", "dom"],
+    "rootDir": "./",
+    "paths": {
+      "@commons/*": ["./src/common/src/*"],
+      "@lambdas/*": ["./src/lambdas/*"]
+    },
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules", ".serverless", ".prettierrc.json", "commitlint.config.js", "devtools"]
+}

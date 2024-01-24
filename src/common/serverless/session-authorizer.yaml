@@ -1,0 +1,5 @@
+name: AuthSessionAuthorizerFunction
+resultTtlInSeconds: 0
+identitySource: method.request.header.authorization
+identityValidationExpression: Bearer (.*)
+type: request

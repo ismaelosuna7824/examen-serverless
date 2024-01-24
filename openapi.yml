@@ -1,0 +1,172 @@
+openapi: 3.0.3
+info:
+  title: TEST
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: http://localhost:4000
+paths:
+  /dev/user:
+    get:
+      summary: http://localhost:4000/dev/user
+      description: http://localhost:4000/dev/user
+      operationId: httpLocalhost4000DevUser2
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+    put:
+      summary: http://localhost:4000/dev/user
+      description: http://localhost:4000/dev/user
+      operationId: httpLocalhost4000DevUser1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: update.oosuna@gmail.com
+                id:
+                  type: number
+                  example: 10
+                username:
+                  type: string
+                  example: update
+            examples:
+              http://localhost:4000/dev/user:
+                value:
+                  email: update.oosuna@gmail.com
+                  id: 10
+                  username: update
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: BAD REQUEST
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value: |-
+                    {
+                        "statusCode": 401,
+                        "error": "Unauthorized",
+                        "message": "User is not authorized to access this resource"
+                    }
+      security:
+        - bearerAuth: []
+    post:
+      summary: http://localhost:4000/dev/user
+      description: http://localhost:4000/dev/user
+      operationId: httpLocalhost4000DevUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: besta-test@mailinator.com
+                username:
+                  type: string
+                  example: alskdhj
+            examples:
+              http://localhost:4000/dev/user:
+                value:
+                  email: besta-test@mailinator.com
+                  username: alskdhj
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Created:
+                  value: '{}'
+                Bad Request:
+                  value: asd
+        '400':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: |-
+                    {
+                        "errorMessage": "Request body validation failed: is not of a type(s) object",
+                        "errorType": "Error",
+                        "offlineInfo": "If you believe this is an issue with serverless-offline please submit it, thanks. https://github.com/dherault/serverless-offline/issues",
+                        "stackTrace": [
+                            "Error: Request body validation failed: is not of a type(s) object",
+                            "at payloadSchemaValidator (file:///E:/testServerless/node_modules/serverless-offline/src/events/http/payloadSchemaValidator.js:7:11)",
+                            "at file:///E:/testServerless/node_modules/serverless-offline/src/events/http/HttpServer.js:545:11",
+                            "at exports.Manager.execute (E:\\testServerless\\node_modules\\@hapi\\hapi\\lib\\toolkit.js:57:29)",
+                            "at internals.handler (E:\\testServerless\\node_modules\\@hapi\\hapi\\lib\\handler.js:46:48)",
+                            "at exports.execute (E:\\testServerless\\node_modules\\@hapi\\hapi\\lib\\handler.js:31:36)",
+                            "at Request._lifecycle (E:\\testServerless\\node_modules\\@hapi\\hapi\\lib\\request.js:370:68)",
+                            "at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+                        ]
+                    }
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value: |-
+                    {
+                        "statusCode": 401,
+                        "error": "Unauthorized",
+                        "message": "User is not authorized to access this resource"
+                    }
+      security:
+        - bearerAuth: []
+  /dev/user/{id}:
+    delete:
+      summary: http://localhost:4000/dev/user/10
+      description: http://localhost:4000/dev/user/10
+      operationId: httpLocalhost4000DevUser10
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '10'
+  /dev/auth:
+    get:
+      summary: http://localhost:4000/dev/auth
+      description: http://localhost:4000/dev/auth
+      operationId: httpLocalhost4000DevAuth
+      responses:
+        '201':
+          description: ''
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value: |-
+                    {
+                        "statusCode": 401,
+                        "error": "Unauthorized",
+                        "message": "User is not authorized to access this resource"
+                    }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags: []

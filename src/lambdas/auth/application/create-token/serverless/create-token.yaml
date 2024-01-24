@@ -1,0 +1,13 @@
+createTokenFunction:
+  name: ${env:STACK_NAME}-createTokenFunction-${env:NODE_ENV}
+  handler: ./src/lambdas/auth/application/create-token/handler/authHandler.createToken
+  environment:
+    SECRET_KEY: ${env:SECRET_KEY}
+    EXPIRESIN: ${env:EXPIRESIN}
+  timeout: 20
+  memorySize: 512
+  events:
+    - http:
+        path: /auth
+        method: get
+        cors: true

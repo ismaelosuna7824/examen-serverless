@@ -1,0 +1,49 @@
+{
+  "name": "testserverless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "serverless offline start --reloadHandler",
+    "build": "tsc --build tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "database:migration:create": "typeorm migration:create",
+    "database:migration:generate": "npm run build && npm run typeorm -- migration:generate -d devtools/typeorm/local.typeorm.config.ts",
+    "serverless": "serverless",
+    "typeorm": "ts-node --project devtools/typeorm/tsconfig.typeorm.json ./node_modules/typeorm/cli.js",
+    "database:migration:up": "npm run build && npm run typeorm -- migration:run -d devtools/typeorm/migrations.config.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/nodemailer": "^6.4.14",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "dotenv": "^16.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "lambda-log": "^3.1.0",
+    "mysql2": "^3.7.1",
+    "nodemailer": "^6.9.8",
+    "reflect-metadata": "^0.2.1",
+    "serverless": "^3.38.0",
+    "tsyringe": "^4.8.0",
+    "typeorm": "^0.3.19",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.131",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/lambda-log": "^3.0.3",
+    "@types/node": "^20.11.5",
+    "serverless-offline": "^13.3.2",
+    "serverless-openapi-documentation": "^0.4.0",
+    "serverless-openapi-documenter": "^0.0.93",
+    "serverless-plugin-typescript": "^2.1.5",
+    "serverless-tscpaths": "^0.0.8",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.8",
+    "typeorm-extension": "^3.3.0"
+  }
+}

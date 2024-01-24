@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "rootDir": "./",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "paths": {
+      "@commons/*": ["./src/common/src/*"],
+      "@lambdas/*": ["./src/lambdas/*"]
+    }
+  },
+}

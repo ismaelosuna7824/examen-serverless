@@ -1,0 +1,18 @@
+custom:
+  documentation:
+    version: '1'
+    title: 'My API'
+    description: 'This is my API'
+    models: {}
+    externalDocumentation:
+      url: https://google.com
+      description: A link to google
+    servers:
+      url: https://example.com
+      description: The server
+    tags:
+      - name: tag1
+        description: this is a tag
+        externalDocumentation:
+          url: https://npmjs.com
+          description: A link to npm

@@ -1,0 +1,94 @@
+# serverless.yml
+service: my-serverless-app
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: dev
+  region: us-east-1 
+
+useDotenv: true
+
+package:
+  individually: true
+  excludeDevDependencies: true
+  patterns:
+    - '!.git/**'
+    - '!.build/**'
+    - '!.serverless/**'
+    - '!.vscode/**'
+    - '!src/commons/**'
+    - '!src/devtools/**'
+    - '!src/lambdas/**'
+    - '!node_modules/**'
+    - '!.*.env'
+    - '!.gitignore'
+    - '!docker-compose.yaml'
+    - '!package.json'
+    - '!package-lock.json'
+    - '!README.md'
+    - '!serverless.yaml'
+    - '!tsconfig.build.json'
+    - '!tsconfig.json'
+
+functions:
+  - ${file(./src/lambdas/auth/application/auth-user/serverless/session-authorizer.yaml)}
+
+  - ${file(./src/lambdas/users/application/create-user/serverless/create-user.yaml)}
+  - ${file(./src/lambdas/users/application/update-user/serverless/update-user.yaml)}
+  - ${file(./src/lambdas/users/application/list-user/serverless/list-user.yaml)}
+  - ${file(./src/lambdas/users/application/delete-user/serverless/delete-user.yaml)}
+  - ${file(./src/lambdas/auth/application/create-token/serverless/create-token.yaml)}
+  # createUser:
+  #   handler: ./src/lambdas/users/aplication/handler/createUserHandler.createUser
+  #   events:
+  #     - http:
+  #         path: createUser
+  #         method: post
+  #         cors: true
+plugins:
+  - serverless-offline
+  - serverless-openapi-documentation
+  - serverless-plugin-typescript
+  - serverless-tscpaths
+  
+
+
+custom:
+  includeDependencies:
+    enableCaching: true
+  serverless-offline:
+    httpPort: 4000
+    reloadHandler: true
+    useChildProcesses: true
+  serverlessPluginTypescript:
+    tsConfigFileLocation: './tsconfig.build.json'
+  documentation:
+    version: "1"
+    title: "My api"
+    description: "This is my API"
+    termsOfService: https://google.com
+    externalDocumentation:
+      url: https://google.com
+      description: A link to google
+    servers:
+      url: https://example.com:{port}/
+      description: The server
+      variables:
+        port:
+          enum:
+            - 4000
+            - 3000
+          default: 3000
+          description: The port the server operates on
+    tags:
+      - name: tag1
+        description: this is a tag
+        externalDocumentation:
+          url: https://npmjs.com
+          description: A link to npm
+    models: {}
+
+
+       

@@ -1,0 +1,20 @@
+UserDeleteFunction:
+  name: ${env:STACK_NAME}-UserDeleteFunction-${env:NODE_ENV}
+  handler: ./src/lambdas/users/application/delete-user/handler/deleteUserHandler.deleteUser
+  environment:
+    DATABASE_TYPE: ${env:DATABASE_TYPE}
+    DATABASE_HOST: ${env:DATABASE_HOST}
+    MYSQL_ROOT_PASSWORD: ${env:MYSQL_ROOT_PASSWORD}
+    MYSQL_DATABASE: ${env:MYSQL_DATABASE}
+    MYSQL_USER: ${env:MYSQL_USER}
+    MYSQL_PASSWORD: ${env:MYSQL_PASSWORD}
+    MYSQL_PORT: ${env:MYSQL_PORT}
+    DATABASE_SSL: ${env:DATABASE_SSL}
+  timeout: 20
+  memorySize: 512
+  events:
+    - http:
+        path: /user/{id}
+        method: delete
+        cors: true
+        authorizer: ${file(./src/common/serverless/session-authorizer.yaml)}
